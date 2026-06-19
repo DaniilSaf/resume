@@ -8,9 +8,12 @@ RUN dnf update -y && dnf install -y \
     texlive-collection-langcyrillic \
     texlive-pdfx \
     texlive-fontawesome5 \
+    texlive-latex-extra \
+    texlive-fonts-extra \
+    cm-super \
     && dnf clean all
 
-COPY CV /CV
-WORKDIR /CV
+WORKDIR /app
+COPY CV/ ./CV/
 
-CMD ["pdflatex", "-interaction=nonstopmode", "main.tex"]
+CMD cd CV && pdflatex -interaction=nonstopmode main.tex
