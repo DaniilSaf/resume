@@ -1,14 +1,16 @@
-FROM ubuntu:20.04
+FROM ubuntu:latest
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    texlive-base texlive-latex-recommended texlive-latex-extra \
-    texlive-fonts-recommended texlive-fonts-extra texlive-pictures \
-    texlive-lang-cyrillic texlive-science cm-super \
+# Install LaTeX and required packages
+RUN apt-get update && apt-get install -y \
+    texlive-latex-base \
+    texlive-latex-extra \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-xetex \
     && rm -rf /var/lib/apt/lists/*
 
-COPY CV /CV
-WORKDIR /CV
+WORKDIR /workspace
 
-CMD ["pdflatex", "-interaction=nonstopmode", "main.tex"]
+# Compile the resume (adjust the source file name as needed)
+CMD pdflatex -interaction=nonstopmode resume.tex && \
+    pdflatex -interaction=nonstopmode resume.tex
