@@ -1,4 +1,4 @@
-FROM fedora:39
+FROM fedora:32
 
 RUN dnf update -y && dnf install -y \
     texlive-scheme-full \
