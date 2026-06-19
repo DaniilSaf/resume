@@ -7,6 +7,7 @@ RUN dnf update -y && dnf install -y \
     texlive-collection-science \
     texlive-collection-langcyrillic \
     texlive-pdfx \
+    texlive-fontawesome5 \
     && dnf clean all
 
 COPY CV /CV
