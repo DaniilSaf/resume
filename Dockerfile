@@ -6,6 +6,7 @@ RUN dnf update -y && dnf install -y \
     texlive-collection-pictures \
     texlive-collection-science \
     texlive-collection-langcyrillic \
+    texlive-pdfx \
     && dnf clean all
 
 COPY CV /CV
