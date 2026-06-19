@@ -1,0 +1,17 @@
+name: PDF
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t resume-builder .
+
+      - name: Compile PDF
+        run: docker run --rm -v ${{ github.workspace }}:/workspace resume-builder
