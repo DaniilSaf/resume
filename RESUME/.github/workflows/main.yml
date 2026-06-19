@@ -1,4 +1,4 @@
-name: Build Resume
+name: Build Resume PDF
 
 on:
   push:
