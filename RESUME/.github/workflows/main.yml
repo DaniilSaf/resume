@@ -1,4 +1,4 @@
-name: Build Resume
+name: Build Resume PDF
 
 on:
   push:
@@ -10,7 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build and run Docker
-        run: |
-          docker build -t resume .
-          docker run --rm -v ${{ github.workspace }}/CV:/CV resume
+      - name: Build Docker image
+        run: docker build -t resume-builder .
+
+      - name: Compile PDF
+        run: docker run --rm -v ${{ github.workspace }}/CV:/CV resume-builder
