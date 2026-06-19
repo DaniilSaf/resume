@@ -1,0 +1,14 @@
+name: Build Resume
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          docker build -t resume .
+          docker run --rm -v ${{ github.workspace }}/CV:/data resume-builder sh -c "cd /data && pdflatex -interaction=nonstopmode main.tex"
