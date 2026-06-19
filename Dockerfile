@@ -1,19 +1,12 @@
-FROM ubuntu:20.04
+FROM fedora:32
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    texlive-base \
-    texlive-latex-recommended \
-    texlive-latex-extra \
-    texlive-fonts-recommended \
-    texlive-fonts-extra \
-    texlive-pictures \
-    texlive-lang-cyrillic \
-    texlive-science \
-    cm-super \
-    dvipng \
-    && rm -rf /var/lib/apt/lists/*
+RUN dnf update -y && dnf install -y \
+    texlive-collection-latexrecommended \
+    texlive-collection-fontsrecommended \
+    texlive-collection-pictures \
+    texlive-collection-science \
+    texlive-collection-langcyrillic \
+    && dnf clean all
 
 COPY CV /CV
 WORKDIR /CV
