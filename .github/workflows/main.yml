@@ -3,27 +3,31 @@ name: Build Resume PDF
 on:
   push:
     branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: docker build -t resume-builder .
+        run: docker build -t resume_builder .
 
-      - name: Compile PDF in container
-        run: docker run --name resume_container resume-builder
+      - name: Run container to build PDF
+        run: docker run --name resume_container resume_builder
 
       - name: Copy PDF from container
-        run: docker cp resume_container:/app/CV/main.pdf .
+        run: docker cp resume_container:/app/CV/cv.pdf .
 
       - name: Verify PDF exists
-        run: test -f main.pdf && echo " PDF built successfully!"
+        run: test -f cv.pdf"
 
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v4
         with:
           name: resume-pdf
-          path: main.pdf
+          path: cv.pdf
