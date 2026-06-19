@@ -10,7 +10,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build and Compile
-        run: |
-          docker build -t resume-builder .
-          docker run --rm -v ${{ github.workspace }}/CV:/CV resume-builder
+      - name: Build Docker image
+        run: docker build -t resume-builder .
+
+      - name: Compile PDF in container
+        run: docker run --name resume_container resume-builder
+
+      - name: Copy PDF from container
+        run: docker cp resume_container:/app/CV/main.pdf .
+
+      - name: Verify PDF exists
+        run: test -f main.pdf && echo " PDF built successfully!"
+
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: main.pdf
