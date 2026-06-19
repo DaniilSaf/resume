@@ -1,0 +1,57 @@
+\documentclass[10pt,a4paper,withhyper]{altacv}
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+\usepackage{paracol}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{DarkPastelRed}{HTML}{450808}
+\definecolor{PastelRed}{HTML}{8F0D0D}
+\colorlet{name}{black}
+\colorlet{tagline}{PastelRed}
+\colorlet{heading}{DarkPastelRed}
+\colorlet{accent}{PastelRed}
+\colorlet{body}{LightGrey}
+
+\begin{document}
+\name{Сафин Даниил Ринатович}
+\tagline{Студент ФКН ВШЭ | Ищу подработку}
+\photoR{2.8cm}{Globe_High}
+\personalinfo{%
+  \email{daniilny2018@gmail.com}
+  \phone{+7 966 310-74-76}
+  \location{Москва, Россия}
+  \github{https://github.com/DaniilSaf}
+}
+\makecvheader
+\columnratio{0.6}
+\begin{paracol}{2}
+\cvsection{Опыт и проекты}
+\cvevent{Telegram-бот помощник}{Личный проект}{2025 -- настоящее время}{}
+\begin{itemize}
+\item Разработал Telegram-бота на Python
+\item Получение погоды через внешнее API
+\item Создание и управление списками задач/напоминаний
+\item Работа с базой данных
+\item Асинхронная архитектура
+\end{itemize}
+\cvsection{Образование}
+\cvevent{Прикладная математика и информатика (БПИ)}{ВШЭ (ФКН)}{2023 -- настоящее время}{Москва}
+\begin{itemize}
+\item GPA: 6/10
+\end{itemize}
+\switchcolumn
+\cvsection{Навыки}
+\cvtag{Python} \cvtag{FastAPI} \cvtag{Docker} \cvtag{Git} \cvtag{C++} \cvtag{SQL} \cvtag{Pandas}
+\cvsection{Языки}
+\cvskill{Русский}{5}
+\cvskill{Немецкий}{3}
+\cvskill{Английский}{2.5}
+\cvsection{Дополнительно}
+\cvevent{Участник}{Data Center PIRK'S}{2025 -- настоящее время}{}
+\begin{itemize}
+\item Помощь с установкой серверов
+\end{itemize}
+\end{paracol}
+\end{document}
